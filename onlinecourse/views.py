@@ -124,18 +124,11 @@ def submit(request, course_id):
         return HttpResponseServerError()
     
     enrollment = Enrollment.objects.filter(user = user , course = course).first()
-    
-
     submission = Submission.objects.create(enrollment=enrollment)
-    
     choice_id_list = extract_answers(request)
     
-
-
-    choice_list = Choice.objects.filter(pk__in=choice_id_list)
     for i in choice_id_list:
         submission.choices.add(i)
-    submission.pk
     
     return HttpResponseRedirect(reverse("onlinecourse:exam_results", args=(course_id , submission.pk)))
     
