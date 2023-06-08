@@ -109,6 +109,8 @@ class Question(models.Model):
     # question grade/mark
     points_worth = models.FloatField(default=1.0)
 
+    correct_choices = models.IntegerField(default=1)
+
     # <HINT> A sample model method to calculate if learner get the score of the question
     #def is_get_score(self, selected_ids):
     #    all_answers = self.choice_set.filter(is_correct=True).count()
@@ -139,5 +141,5 @@ class Choice(models.Model):
 # One choice could belong to multiple submissions
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
-    chocies = models.ManyToManyField(Choice)
+    choices = models.ManyToManyField(Choice)
 #    Other fields and methods you would like to design

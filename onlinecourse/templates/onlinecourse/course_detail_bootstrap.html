@@ -69,7 +69,7 @@
             -->
             <button href="#exam" class="btn btn-primary btn-block"  data-toggle="collapse">Exam</button>
             <div id = "exam" class="containter-fluid collapse">
-            <form id="questionform" action="point to a submit view" method="post">
+            <form id="questionform" action="submit/" method="post">
                         {% for question in course.question_set.all %}
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.content}}</h5></div>
