@@ -177,23 +177,18 @@ def show_exam_result(request, course_id, submission_id):
     submission = get_object_or_404(Submission , pk=submission_id)
     user = request.user
     choices = submission.choices.all()
-    questions= course.question_set.all()
-    
-    total_choices = len(choices)
     
     max_points = 0
     points = 0
 
+    for question in course.question_set.all():
+        max_points += question.points_worth
 
-    
-    
 
-
-    
     for choice in choices:
         if choice.is_correct:
             points += choice.question.points_worth / choice.question.correct_choices
-        max_points += choice.question.points_worth
+        
 
     score = points/max_points
     grade = round(score*100 , 2)
